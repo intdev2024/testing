@@ -1,0 +1,83 @@
+<!doctype html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="./assets/css/all.min.css")
+    title Thank You
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-color: rgb(250,250,250);
+      }
+      h1 {
+        color: #333;
+        margin-left:100px;
+        margin-top:100px;
+      }
+      p {
+        color: #333;
+        margin-left:100px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 50%;
+        margin-bottom: 20px;
+        text-align: left;
+        margin-left:100px;
+      }
+      th, td {
+        border: 2px solid #ddd;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .back{
+        background :black;
+        margin-left:100px;
+        font-size:20px;
+      }
+      .back a{
+        text-decoration:none;
+        color:white;
+      }
+      .fa-solid{
+        padding-right:10px;
+      }
+      .back:hover{
+        background:rgb(0,0,0,0.5);
+      }
+  body
+    h1 Thanks for the info!
+    p The following was saved to the database:
+    table
+      tr
+        th Visitor ID
+        td #{visitor.id}
+      tr
+        th Full Name
+        td #{visitor.full_name}
+      tr
+        th Age
+        td #{visitor.age}
+      tr
+        th Date of Visit
+        td
+          script.
+            var date = new Date("#{visitor.date_of_visit}");
+            var formattedDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+            document.write(formattedDate);
+      tr
+        th Time of Visit
+        td #{visitor.time_of_visit}
+      tr
+        th Assistant's Name
+        td #{visitor.name_of_assistant}
+      tr
+        th Comments
+        td #{visitor.comments}
+  button.back(type="button")
+    a(href="/new_visitor")
+      i.fa-solid.fa-arrow-left
+      |  Back to Form

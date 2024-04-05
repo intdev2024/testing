@@ -1,0 +1,32 @@
+{
+  "name": "josephjacob-malete-282-node-sql-assignment-javascript",
+  "version": "1.0.0",
+  "description": "NODE & SQL ASSIGNMENT",
+  "main": "src/visitors.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Umuzi-org/JosephJacob-Malete-282-node-sql-assignment-javascript.git"
+  },
+  "author": "Joseph Jacob Malete",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Umuzi-org/JosephJacob-Malete-282-node-sql-assignment-javascript/issues"
+  },
+  "homepage": "https://github.com/Umuzi-org/JosephJacob-Malete-282-node-sql-assignment-javascript#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.3",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "jasmine": "^5.1.0",
+    "jsdom": "^24.0.0",
+    "nodemon": "^3.1.0"
+  }
+}
