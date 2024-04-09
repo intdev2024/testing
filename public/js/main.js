@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
           tr.style.background = "";
           tr.classList.add("highlight");
           userId.push(user.id);
+          console.log(user.id)
         });
 
         no.addEventListener("click", () => {
@@ -88,9 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.style.display = "none";
           text.style.display = "none";
           loading.style.display = "block";
+          deleteUserFromServer(user, tr);
           setTimeout(() => {
             //hidePopUp();
-            deleteUserFromServer(user, tr);
             tr.classList.remove("highlight");
             text.style.display = "flex";
             loading.style.display = "none";
@@ -146,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function deleteUserFromServer(user, tr) {
     try {
-      await deleteUser(parseInt(user.id));
+      await deleteUser(parseInt(userId[0]));
 
       // Remove user from local array and DOM
       if (userId.includes(user.id)) {
@@ -154,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (index !== -1) {
           users.splice(index, 1);
           table.removeChild(tr);
+          userId = [];
         }
       }
     } catch (error) {
