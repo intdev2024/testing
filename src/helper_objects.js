@@ -56,14 +56,14 @@ const queryObject = {
 const databaseErrors = {
   errorCreatingTable: "Error creating a table!",
   addingVisitor: "Error adding a visitor!",
-  listingVisitors: "Error listing all visitors. The table is empty!!",
+  listingVisitors: "Visitors not found. The table is empty!",
   deletingAVisitor: "Error deleting visitor!",
   deletingAll: "Error deleting all visitors. The table is empty!",
   updating: "Error updating visitor!",
   viewing: "Error viewing visitor!",
   viewingLast: "Error viewing last visitor. The table is empty!",
   columnDoesNotExist: (text) => `Column '${text}' does not exist!`,
-  visitorDoesNotExist: (visitorID) => `Visitor with ID ${visitorID} does not exist!`,
+  visitorDoesNotExist: (visitorID) => `Visitor with ID: ${visitorID} does not exist!`,
   noRelations: 'relation "visitors" does not exist!',
   tableDoesNotExist: `Table 'visitors' does not exist.`,
 };

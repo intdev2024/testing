@@ -1,0 +1,13 @@
+{
+    "fullName":"Malete Joe",
+    "age":24,
+    "dateOfVisit":"10-11-2009",
+    "timeOfVisit":"10:30",
+    "nameOfAssistant":"Joe Maboja",
+    "comments":"Hello"
+}
+
+{
+    "columnToUpdate": "age",
+    "newValue": 10
+}
