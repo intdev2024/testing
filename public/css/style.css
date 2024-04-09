@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width:100vw;
+  width: 100vw;
 }
 
 :root {
@@ -36,16 +36,16 @@ main {
   font-family: sans-serif;
   position: fixed;
   top: 0px;
-  left:0px;
+  left: 0px;
   z-index: 100;
-  border-bottom: 1px solid #a1a1a1;
-  padding-top:20px;
+  padding-top: 20px;
 }
 
 .top .buttons {
   display: flex;
-  top: 0px;
   right: 20px;
+  position: absolute;
+  bottom: -10px;
 }
 
 .top p {
@@ -57,25 +57,24 @@ main {
 
 .top-tools {
   width: 170px;
-  height: 40px;
-  background: rgb(255, 255, 255);
+  height: 50px;
   border: none;
-  margin: 5px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  background: transparent;
   display: flex;
   align-items: center;
   cursor: default;
   font-size: 22px;
   right: 0px;
-  top:20px;
   position: relative;
-  border-radius: 5px;
+  margin: 10px;
+  border-bottom: 4px solid transparent;
 }
 
-.top-tools:hover {
-  color: rgb(233, 233, 233);
-  background: rgb(35, 35, 35);
+.active-tab {
+  border-bottom: 4px solid white;
 }
+
 
 .middle {
   margin-top: 50px;
@@ -83,13 +82,17 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position:relative;
+  position: relative;
 }
 
-.middle h1{
+.middle h1 {
   position: absolute;
-  left:5%;
-  top:-20px;
+  left: 5%;
+  top: -20px;
+}
+
+.middle h1:hover {
+  text-decoration: underline;
 }
 
 .name {
@@ -100,11 +103,7 @@ main {
 
 .top-tools .fa-solid {
   padding-left: 10px;
-  padding-right: 20px;
-}
-
-.tool-tip {
-  font-size: 24px;
+  padding-right: 5px;
 }
 
 .pop-up {
@@ -234,13 +233,17 @@ main {
   font-weight: 800;
 }
 
+#name:hover {
+  text-decoration: underline;
+}
+
 .overlayer {
   background: black;
   opacity: 0.8;
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top:0px;
+  top: 0px;
   z-index: 110;
   display: none;
 }

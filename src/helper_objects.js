@@ -40,7 +40,8 @@ const queryObject = {
     INSERT INTO visitors (full_name, age, date_of_visit, time_of_visit, name_of_assistant, comments)
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
 `,
-  listAll: `SELECT id,full_name FROM visitors`,
+  //listAll: `SELECT id,full_name FROM visitors`,
+  listAll: `SELECT * FROM visitors`,
   deleteVisitor: `DELETE FROM visitors WHERE id = $1 RETURNING *`,
   deleteAll: `DELETE FROM visitors RETURNING *`,
   update: (text) => `UPDATE visitors SET ${text} = $1 WHERE id = $2 RETURNING *`,

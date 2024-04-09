@@ -2,7 +2,7 @@
   position: relative;
   z-index: 5;
   width: 90%;
-  top:50px;
+  top: 50px;
 }
 
 table {
@@ -40,7 +40,6 @@ tr {
 tr .icon {
   font-size: 20px;
   text-align: center;
-  cursor: pointer;
 }
 
 .highlight {
@@ -73,6 +72,5 @@ tr .icon {
 }
 
 .button:hover {
-  background: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  opacity: 0.8;
 }
