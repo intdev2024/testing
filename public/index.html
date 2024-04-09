@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./assets/css/all.min.css" />
-    <title>Visitors form</title>
-  </head>
-  <body>
-    <div class="heading">
-      <h1>Add new visitor</h1>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/table.css">
+  <script src="https://kit.fontawesome.com/062d0051ac.js" crossorigin="anonymous"></script>
+  <title>Visitor Management System</title>
+</head>
+
+<body>
+  <div class="overlayer"></div>
+  <div class="pop-up">
+    <div class="loading">
+      <i class="fa-solid fa-trash-can"></i>
+      <div class="circle"></div>
     </div>
-    <div class="background"></div>
-    <form method="POST" action="/submit-form">
-      <div class="empty"></div>
-      <label for="visitor-names">Full names</label>
-      <input type="text" id="visitor-names" name="fullName" required />
-      <span class="error"
-        >Enter names in full (Initials or numbers are not allowed)</span
-      >
-      <label for="age">Age</label>
-      <input type="number" id="age" min="1" name="age" required />
-      <span class="error">Enter a valid age!</span>
-      <label for="date">Date</label>
-      <input type="date" id="date" name="dateOfVisit" required />
-      <label for="date">Time</label>
-      <input type="time" id="time" name="timeOfVisit" required />
-      <label for="name-assistant">Name of Assistant</label>
-      <input type="text" id="name-assistant" name="nameOfAssistant" required />
-      <span class="error"
-        >Enter names in full (Initials or numbers are not allowed)</span
-      >
-      <label for="comment">Comment</label>
-      <textarea id="comment" name="comments"></textarea>
-      <div class="buttons">
-        <button type="submit" id="add">
-          <i class="fa-solid fa-user-plus"></i> Submit
-        </button>
-      </div>
-    </form>
-    <script src="./validate_inputs.js"></script>
-  </body>
+    <div class="pop-up-text">
+      <p>You are about to delete a Visitor<br>name: <span id="name"></span> and id: <span id="id"></span>
+      </p>
+      <h1>Are you sure?</h1>
+    </div>
+    <div class="buttons">
+      <button class="btn yes"><i class='fa-solid fa-check'></i> Yes</button>
+      <button class="btn no"><i class='fa-solid fa-times'></i> No</button>
+    </div>
+  </div>
+  <div class="top">
+    <p><i class="fa-solid fa-database"></i> Visitor Management</p>
+    <div class="buttons">
+      <button class="top-tools"><i class='fa-solid fa-user-plus'></i>
+        Add new
+      </button>
+      <button class="top-tools"><i class='fa-solid fa-list'></i>
+        View all
+      </button>
+    </div>
+  </div>
+  <main>
+    <div class="middle">
+      <h1>Visitors table</h1>
+      <table class="table">
+        <th>Id</th>
+        <th>Full names</th>
+        <th>Age</th>
+        <th>Date of visit</th>
+        <th>Time of visit</th>
+        <th>Name of assistant</th>
+        <th class="comments">Comments</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </table>
+    </div>
+  </main>
+  <script src="./js/main.js"></script>
+</body>
+
 </html>

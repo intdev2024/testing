@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.set("view engine", "pug");
 
 app.get("/new_visitor", (req, res) => {
-  res.sendFile(path.join(directoryPath, "index.html"));
+  res.sendFile(path.join(directoryPath, "dashboard.html"));
 });
 
 app.post("/visitors", async (req, res) => {
