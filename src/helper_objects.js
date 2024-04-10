@@ -70,13 +70,12 @@ const databaseErrors = {
 };
 
 const successMessages = {
-  tableCreated: 'Table created successfully!',
-  newVisitorAdded: 'A visitor added successfully!',
-  visitorDeleted: 'Visitor deleted successfully!',
-  allVisitorsDeleted: 'All visitors deleted successfully!',
-  visitorUpdated: 'Visitor updated successfully!'
-}
-
+  tableCreated: "Table created successfully!",
+  newVisitorAdded: "A visitor added successfully!",
+  visitorDeleted: "Visitor deleted successfully!",
+  allVisitorsDeleted: "All visitors deleted successfully!",
+  visitorUpdated: "Visitor updated successfully!",
+};
 
 module.exports = {
   errorMessages,
@@ -84,5 +83,5 @@ module.exports = {
   queryObject,
   databaseErrors,
   stringObject,
-  successMessages
+  successMessages,
 };

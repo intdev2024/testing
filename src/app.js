@@ -29,6 +29,21 @@ app.get("/app", (req, res) => {
   res.sendFile(path.join(directoryPath, "index.html"));
 });
 
+app.post("/submit-form", async (req, res) => {
+  const { fullName, age, dateOfVisit, timeOfVisit, nameOfAssistant, comments } = req.body;
+  req.body.age = parseInt(age);
+
+  const result = await addNewVisitor(
+    fullName,
+    req.body.age,
+    dateOfVisit,
+    timeOfVisit,
+    nameOfAssistant,
+    comments
+  );
+  res.redirect("/thank-you");
+});
+
 app.post("/visitors", async (req, res) => {
   const { fullName, age, dateOfVisit, timeOfVisit, nameOfAssistant, comments } = req.body;
   req.body.age = parseInt(age);
@@ -42,7 +57,6 @@ app.post("/visitors", async (req, res) => {
     comments
   );
   res.send(result);
-  // res.redirect("/thank-you");
 });
 
 app.get("/thank-you", async (req, res) => {
@@ -80,5 +94,5 @@ app.get("/visitors/:id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}/new_visitor`);
+  console.log(`Server is running on http://localhost:${port}/app`);
 });
