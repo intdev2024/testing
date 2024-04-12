@@ -9,17 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const visitorDisplay = document.querySelector("#name");
   const overLayer = document.querySelector(".overlayer");
   const menuElements = document.querySelectorAll(".top-tools");
+  const loading = document.querySelector(".loading");
 
   menuElements[0].addEventListener("click", () => {
-    menuElements[0].classList.add("active-tab");
-    menuElements[1].classList.remove("active-tab");
+    menuElements[0].classList.add("active");
+    menuElements[1].classList.remove("active");
     table.style.display = "none";
     form.style.display = "flex";
   });
 
   menuElements[1].addEventListener("click", () => {
-    menuElements[0].classList.remove("active-tab");
-    menuElements[1].classList.add("active-tab");
+    menuElements[0].classList.remove("active");
+    menuElements[1].classList.add("active");
     table.style.display = "table";
     form.style.display = "none";
   });
@@ -30,16 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const users = [];
-  const userId = [];
+  let userId = [];
 
   function getAllUsers() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: "http://localhost:3000/visitors",
+        url: "https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors",
         type: "GET",
         success: function (response) {
           users.push(response);
-          console.log(users[0]);
           resolve(users[0]);
         },
         error: function (xhr, status, error) {
@@ -100,17 +100,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         yes.addEventListener("click", async () => {
           const text = document.querySelector(".pop-up-text");
-          const loading = document.querySelector(".loading");
           const btn = document.querySelector(".buttons");
           btn.style.display = "none";
           text.style.display = "none";
           try {
             await deleteUserFromServer(user, tr);
-            hidePopUp();
+           /* setTimeout(() => {
+              hidePopUp();
+              loading.style.display = "none";
+            }, 1000);*/
+            loading.style.display = "block";
             tr.classList.remove("highlight");
-            text.style.display = "flex";
-            loading.style.display = "none";
-            btn.style.display = "block";
+            text.style.display = "none";
+            btn.style.display = "none";
           } catch (error) {
             alert(error);
           }
@@ -145,15 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
     overLayer.style.display = "block";
   }
 
-  function deleteUser() {
-    const loading = document.querySelector(".loading");
+  function deleteUser(id) {
     return new Promise((resolve, reject) => {
-      loading.style.display = "block";
       $.ajax({
-        url: `http://localhost:3000/visitors/${parseInt(userId[0])}`,
+        url: `https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors/${parseInt(
+          id
+        )}`,
         type: "DELETE",
         success: function (response) {
-          resolve((loading.innerHTML = response));
+          return resolve(response);
         },
         error: function (xhr, status, error) {
           console.error("Error deleting user:", error);
@@ -164,20 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function deleteUserFromServer(user, tr) {
-    try {
-      if (userId.includes(user.id)) {
-        await deleteUser();
-        const index = users.findIndex((u) => u.id === user.id);
-        if (index !== -1) {
-          users.splice(index, 1);
-          tableBody.removeChild(tr);
-          userId.splice(0, 1);
-          await addUserToTable();
-        }
-      }
-    } catch (error) {
-      console.error("Error deleting user:", error);
-      alert(error);
+    loading.innerHTML = await deleteUser(userId[0]);
+    if (userId.includes(user.id)) {
+      tableBody.removeChild(tr);
+      userId = [];
     }
   }
 

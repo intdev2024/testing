@@ -58,11 +58,9 @@ main {
 }
 
 .top-tools {
-  width: 170px;
-  height: 50px;
-  border: none;
-  color: rgb(255, 255, 255);
-  background: transparent;
+  border: 2px solid black;
+  color: black;
+  background: white;
   display: flex;
   align-items: center;
   cursor: default;
@@ -70,13 +68,20 @@ main {
   right: 0px;
   position: relative;
   margin: 10px;
-  border-bottom: 4px solid transparent;
+  top:-20px;
+  padding:5px 10px;
+  border-radius:10px;
 }
 
-.active-tab {
-  border-bottom: 4px solid white;
+.top-tools:hover{
+  opacity:0.8;
 }
 
+.active{
+  color: white;
+  background:black;
+  border:2px solid;
+}
 
 .middle {
   margin-top: 50px;
@@ -105,8 +110,7 @@ main {
 }
 
 .top-tools .fa-solid {
-  padding-left: 10px;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 
 
