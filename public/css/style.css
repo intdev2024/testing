@@ -68,19 +68,19 @@ main {
   right: 0px;
   position: relative;
   margin: 10px;
-  top:-20px;
-  padding:5px 10px;
-  border-radius:10px;
+  top: -20px;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
 
-.top-tools:hover{
-  opacity:0.8;
+.top-tools:hover {
+  opacity: 0.8;
 }
 
-.active{
+.active {
   color: white;
-  background:black;
-  border:2px solid;
+  background: black;
+  border: 1px solid;
 }
 
 .middle {
@@ -112,7 +112,6 @@ main {
 .top-tools .fa-solid {
   padding-right: 10px;
 }
-
 
 .update {
   background: white;
@@ -147,7 +146,7 @@ main {
   display: none;
   flex-direction: column;
   align-items: center;
-  transition: .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: fixed;
   box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.5);
   z-index: 120;
@@ -202,6 +201,29 @@ main {
   border: none;
 }
 
+.success {
+  width: 300px;
+  height: 100px;
+  color: rgb(25, 161, 25);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: -50px;
+}
+
+.success .fa-solid {
+  padding: 10px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+.success p {
+  color: rgb(25, 161, 25);
+  text-align: center;
+  margin-top: 50px;
+}
+
 .loading {
   background: transparent;
   width: 100px;
@@ -245,7 +267,7 @@ main {
   }
 
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   100% {

@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const loading = document.querySelector(".loading");
   const text = document.querySelector(".pop-up-text");
   const btn = document.querySelector(".buttons");
-  const loadCircle = document.querySelector('.loading .circle')
-  const loadIcon = document.querySelector('.loading .fa-solid')
+  const loadCircle = document.querySelector(".loading .circle");
+  const loadIcon = document.querySelector(".loading .fa-solid");
 
   menuElements[0].addEventListener("click", () => {
     menuElements[0].classList.add("active");
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function hidePopUp() {
-    popUp.style.display= "flex";
+    popUp.style.display = "none";
     overLayer.style.display = "none";
   }
 
@@ -109,8 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
           try {
             await deleteUserFromServer(user, tr);
             tr.classList.remove("highlight");
-            text.style.display = "none";
-            btn.style.display = "none";
           } catch (error) {
             alert(error);
           }
@@ -154,7 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
         )}`,
         type: "DELETE",
         success: function (response) {
-          resolve(message.push(response));
+          resolve(
+            message.push(response),
+            (loading.innerHTML = `<div class="success"><i class="fa-solid fa-check"></i><p>${message[0]}<p></div>`)
+          );
         },
         error: function (error) {
           console.error("Error deleting user:", error);
@@ -166,17 +167,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function deleteUserFromServer(user, tr) {
     await deleteUser(userId[0]);
-    loading.innerHTML = message[0];
+
     setTimeout(() => {
       hidePopUp();
-      text.style.display = "block";
-      btn.style.display = "block";
-      popUp.append(text,btn);
-      loading.innerHTML = '';
-      loading.style.display='none';
-      loading.append(loadCircle,loadIcon);
       message = [];
-    }, 1000);
+      text.style.display = "flex";
+      btn.style.display = "block";
+      popUp.append(text, btn);
+      loading.innerHTML = "";
+      loading.style.display = "none";
+      loading.append(loadCircle, loadIcon);
+    }, 1300);
     if (userId.includes(user.id)) {
       tableBody.removeChild(tr);
       userId = [];
