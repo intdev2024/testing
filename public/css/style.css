@@ -117,26 +117,33 @@ main {
   background: white;
   width: 400px;
   padding: 50px;
-  position: absolute;
+  position: fixed;
   z-index: 120;
   border-radius: 10px;
   top: 10%;
+  display: flex;
   display: none;
   flex-direction: column;
 }
 
-.update .buttons .save {
-  background: rgb(15, 170, 41);
-  border: none;
-  font-size: 24px;
-  color: white;
+.update .buttons-updated {
+  margin-top: 10px;
 }
 
-.update .buttons .cancel {
-  background: rgb(226, 8, 8);
+.update .buttons-updated .save,
+.update .buttons-updated .cancel {
+  width:49%;
+  background: rgb(0, 0, 0);
   border: none;
   font-size: 24px;
   color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.update .buttons-updated .save:hover,
+.update .buttons-updated .cancel:hover {
+  opacity: 0.6;
 }
 
 .pop-up {
@@ -205,23 +212,32 @@ main {
   width: 300px;
   height: 100px;
   color: rgb(25, 161, 25);
-  font-size: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  margin-left: -50px;
+  margin-left: -100px;
+  position: relative;
+  top: -50px;
 }
 
 .success .fa-solid {
   padding: 10px;
   border: 2px solid;
   border-radius: 50%;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  margin-left: 85px;
 }
 
 .success p {
+  width: 300px;
   color: rgb(25, 161, 25);
   text-align: center;
-  margin-top: 50px;
+  margin-top: 150px;
+  position: absolute;
 }
 
 .loading {

@@ -2,9 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const table = document.querySelector("table");
   const tableBody = document.querySelector("#table-body");
   const form = document.querySelector("form");
+  const updateForm = document.querySelector(".update");
   const popUp = document.querySelector(".pop-up");
   const no = document.querySelector(".no");
   const yes = document.querySelector(".yes");
+  const cancel = document.querySelector(".cancel");
+  const save = document.querySelector(".save");
   const idDisplay = document.querySelector("#id");
   const visitorDisplay = document.querySelector("#name");
   const overLayer = document.querySelector(".overlayer");
@@ -14,6 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".buttons");
   const loadCircle = document.querySelector(".loading .circle");
   const loadIcon = document.querySelector(".loading .fa-solid");
+
+  const fullNameInputUpdated = document.querySelector("#name-updated");
+  const ageInputUpdated = document.querySelector("#age-updated");
+  const dateInputUpdated = document.querySelector("#date-updated");
+  const timeInputUpdated = document.querySelector("#time-updated");
+  const assistantNameInputUpdated = document.querySelector(
+    "#name-assistant-updated"
+  );
+  const commentTextareaUpdated = document.querySelector("#comment-updated");
 
   menuElements[0].addEventListener("click", () => {
     menuElements[0].classList.add("active");
@@ -67,11 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
             td.textContent = user[key];
             tr.appendChild(td);
 
-            if (key === "id") {
-              td.style.background = "rgb(220,220,220)";
-              td.style.border = "none";
-            }
-
             if (key === "date_of_visit") {
               td.innerHTML = td.innerHTML.slice(0, 10);
             }
@@ -92,14 +99,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
         del.addEventListener("click", () => {
           showPopUp(user);
-          tr.style.background = "";
           tr.classList.add("highlight");
           userId.push(user.id);
           console.log(user.id);
         });
 
+        edit.addEventListener("click", () => {
+          updateForm.style.display = "flex";
+          overLayer.style.display = "block";
+          userId.push(user.id);
+
+          function validateDate() {
+            let date = new Date(user.date_of_visit);
+            let formattedDate =
+              date.getFullYear() +
+              "/" +
+              ("0" + (date.getMonth() + 1)).slice(-2) +
+              "/" +
+              ("0" + date.getDate()).slice(-2);
+            return formattedDate;
+          }
+
+          fullNameInputUpdated.value = user.full_name;
+          ageInputUpdated.value = user.age;
+          dateInputUpdated.value = validateDate();
+          timeInputUpdated.value = user.time_of_visit;
+          assistantNameInputUpdated.value = user.name_of_assistant;
+          commentTextareaUpdated.value = user.comments;
+        });
+
+        cancel.addEventListener("click", () => {
+          updateForm.style.display = "none";
+          overLayer.style.display = "none";
+          userId = [];
+
+          fullNameInputUpdated.value = "";
+          ageInputUpdated.value = "";
+          dateInputUpdated.value = "";
+          timeInputUpdated.value = "";
+          assistantNameInputUpdated.value = "";
+          commentTextareaUpdated.value = "";
+        });
+
+        save.addEventListener("click", () => {
+          alert('yes')
+        })
+
         no.addEventListener("click", () => {
           hidePopUp();
+          userId = [];
           tr.classList.remove("highlight");
         });
 
@@ -151,6 +199,28 @@ document.addEventListener("DOMContentLoaded", () => {
           id
         )}`,
         type: "DELETE",
+        success: function (response) {
+          resolve(
+            message.push(response),
+            (loading.innerHTML = `<div class="success"><i class="fa-solid fa-check"></i><p>${message[0]}<p></div>`)
+          );
+        },
+        error: function (error) {
+          console.error("Error deleting user:", error);
+          reject(error);
+        },
+      });
+    });
+  }
+
+  function updateUser(id) {
+    loading.style.display = "block";
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: `https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors/${parseInt(
+          id
+        )}`,
+        type: "PUT",
         success: function (response) {
           resolve(
             message.push(response),
