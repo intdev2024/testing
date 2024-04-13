@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const overLayer = document.querySelector(".overlayer");
   const menuElements = document.querySelectorAll(".top-tools");
   const loading = document.querySelector(".loading");
+  const text = document.querySelector(".pop-up-text");
+  const btn = document.querySelector(".buttons");
+  const loadCircle = document.querySelector('.loading .circle')
+  const loadIcon = document.querySelector('.loading .fa-solid')
 
   menuElements[0].addEventListener("click", () => {
     menuElements[0].classList.add("active");
@@ -26,12 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function hidePopUp() {
-    popUp.style.transform = "scale(0)";
+    popUp.style.display= "flex";
     overLayer.style.display = "none";
   }
 
   const users = [];
   let userId = [];
+  let message = [];
 
   function getAllUsers() {
     return new Promise((resolve, reject) => {
@@ -99,17 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         yes.addEventListener("click", async () => {
-          const text = document.querySelector(".pop-up-text");
-          const btn = document.querySelector(".buttons");
           btn.style.display = "none";
           text.style.display = "none";
           try {
             await deleteUserFromServer(user, tr);
-           /* setTimeout(() => {
-              hidePopUp();
-              loading.style.display = "none";
-            }, 1000);*/
-            loading.style.display = "block";
             tr.classList.remove("highlight");
             text.style.display = "none";
             btn.style.display = "none";
@@ -143,11 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function showPopUp(user) {
     idDisplay.textContent = user.id;
     visitorDisplay.textContent = user.full_name;
-    popUp.style.transform = "scale(1)";
     overLayer.style.display = "block";
+    popUp.style.display = "flex";
   }
 
   function deleteUser(id) {
+    loading.style.display = "block";
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors/${parseInt(
@@ -155,9 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
         )}`,
         type: "DELETE",
         success: function (response) {
-          return resolve(response);
+          resolve(message.push(response));
         },
-        error: function (xhr, status, error) {
+        error: function (error) {
           console.error("Error deleting user:", error);
           reject(error);
         },
@@ -166,7 +165,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function deleteUserFromServer(user, tr) {
-    loading.innerHTML = await deleteUser(userId[0]);
+    await deleteUser(userId[0]);
+    loading.innerHTML = message[0];
+    setTimeout(() => {
+      hidePopUp();
+      text.style.display = "block";
+      btn.style.display = "block";
+      popUp.append(text,btn);
+      loading.innerHTML = '';
+      loading.style.display='none';
+      loading.append(loadCircle,loadIcon);
+      message = [];
+    }, 1000);
     if (userId.includes(user.id)) {
       tableBody.removeChild(tr);
       userId = [];
