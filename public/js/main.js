@@ -22,9 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ageInputUpdated = document.querySelector("#age-updated");
   const dateInputUpdated = document.querySelector("#date-updated");
   const timeInputUpdated = document.querySelector("#time-updated");
-  const assistantNameInputUpdated = document.querySelector(
-    "#name-assistant-updated"
-  );
+  const assistantNameInputUpdated = document.querySelector("#name-assistant-updated");
   const commentTextareaUpdated = document.querySelector("#comment-updated");
 
   menuElements[0].addEventListener("click", () => {
@@ -53,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function getAllUsers() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: "https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors",
+        url: "http://localhost:3000/visitors",
         type: "GET",
         success: function (response) {
           users.push(response);
@@ -142,8 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         save.addEventListener("click", () => {
-          alert('yes')
-        })
+          alert("yes");
+        });
 
         no.addEventListener("click", () => {
           hidePopUp();
@@ -195,9 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loading.style.display = "block";
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors/${parseInt(
-          id
-        )}`,
+        url: `http://localhost:3000/visitors/${parseInt(id)}`,
         type: "DELETE",
         success: function (response) {
           resolve(
@@ -217,9 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loading.style.display = "block";
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `https://silver-memory-v6p779xp7j742p9vv-3000.app.github.dev/visitors/${parseInt(
-          id
-        )}`,
+        url: `http://localhost:3000/visitors/${parseInt(id)}`,
         type: "PUT",
         success: function (response) {
           resolve(
